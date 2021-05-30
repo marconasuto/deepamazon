@@ -2,11 +2,11 @@
 # deepAmazon
 *How deep learning and satellite images can help tracking and planning a sustainable strategy for a region.*
 
-*Topic: CONVOLUTIONAL NEURAL NETWORKS APPLIED TO REMOTE SENSING IMAGERY FOR MULTI-LABEL SCENE RECOGNITION.*
+*Topic: Convolutional Neural Networks applied to remote sensing images for multi-label scene recognition.*
 
 *Module 5 project for FlatIron School Data Science course*
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019)")
+![alt text](images/mapfires.png "AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019)")
 FIG AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019) 
 DESCRIPTION: IT CAN BE EASILY SEEN THAT THERE IS A GOOD OVERLAP BETWEEN FIRES AND MINES SITES LOCATIONS. 
 SOURCE: NASA/NOAA, VIIRS DAILY GLOBAL FIRE DETECTIONS; DETECTIONS: AMAZONIAN NETWORK OF GEOREFERENCED SOCIOENVIRONMENTAL INFORMATION (RAISG); CREDITS: MARCO GIUSEPPE NASUTO
@@ -66,11 +66,11 @@ Finally, I summarised the results, limits of this project and highlighted some o
 ### SDGs and business opportunities: a brief overview
 According to the [United Nations](https://www.earthobservations.org/documents/publications/201703_geo_eo_for_2030_agenda.pdf), Earth Observation and Remote Sensing data are crucial for reaching the Sustainable Development Goals (SDGs). In 1972, [The Limits to Growth](https://www.clubofrome.org/publication/the-limits-to-growth/) was published by the Club of Rome. Levereging on the MIT computer World3, it was a study on the relationships between five subsystesms of the world economy population, food and industrial production, pollution and consumption of non-renewable natural resources. The key finding was that an unlimited growth in the economy and population would lead to a collapse of the global system by the mid to late twenty-first century. In 2012, the United Nations published the Sustainable Development Goals that set what the most significant challenges for the next two decades are. Earth Observation data can help tackling all of them (fig.2), at a significant scale, with a great level of granularity, and at low cost. 
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "MAPPING OF HOW EARTH OBSERVATION DATA CAN HELP ACHIEVING SUSTAINABLE DEVELOPMENT GOALS FOR 2030 AGENDA. SOURCE: GEO - UNITED NATIONS")
-FIG 3: MAPPING OF HOW EARTH OBSERVATION DATA CAN HELP ACHIEVING SUSTAINABLE DEVELOPMENT GOALS FOR 2030 AGENDA. SOURCE: GEO - UNITED NATIONS
+![alt text](images/sustainable_goals_RS.png "MAPPING OF HOW EARTH OBSERVATION DATA CAN HELP ACHIEVING SUSTAINABLE DEVELOPMENT GOALS FOR 2030 AGENDA. SOURCE: GEO - UNITED NATIONS")
+FIG: MAPPING OF HOW EARTH OBSERVATION DATA CAN HELP ACHIEVING SUSTAINABLE DEVELOPMENT GOALS FOR 2030 AGENDA. SOURCE: GEO - UNITED NATIONS
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "CLASSIFICATION TASKS ACHIEVABLE USING MACHINE LEARNING APPLIED TO RS DATA TOWARDS SUSTAINABLE DEVELOPMENT GOALS. CREDITS: FERREIRA, ITEN & AL. ")
-FIG 3: CLASSIFICATION TASKS ACHIEVABLE USING MACHINE LEARNING APPLIED TO RS DATA TOWARDS SUSTAINABLE DEVELOPMENT GOALS. CREDITS: FERREIRA, ITEN & AL. 
+![alt text](images/sustainable_goals_ML_RS.png "CLASSIFICATION TASKS ACHIEVABLE USING MACHINE LEARNING APPLIED TO RS DATA TOWARDS SUSTAINABLE DEVELOPMENT GOALS. CREDITS: FERREIRA, ITEN & AL. ")
+FIG: CLASSIFICATION TASKS ACHIEVABLE USING MACHINE LEARNING APPLIED TO RS DATA TOWARDS SUSTAINABLE DEVELOPMENT GOALS. CREDITS: FERREIRA, ITEN & AL. 
 
 **Food and agriculture**
 It is estimated that roughly [800 million](https://www.wri.org/insights/numbers-how-business-benefits-sustainable-development-goals) people are undernourished globally. The growing population will require 220 million hectares (approximately the size of Ireland) additional land for food production. On the other hand it has been estimated that from 1990 till today, [220 million hectares of tropical forests disappeared mainly due to agriculture](https://advances.sciencemag.org/content/7/10/eabe1603), logging and fires. Considering that deforestation is linked with climate change due to CO2 absorption, and that [according to McKinsey](https://www.mckinsey.com/industries/oil-and-gas/our-insights/global-energy-perspective-2021), we're far from the 1.5º C pathway, it is evident that food and agriculture pose a serious challenge to environmental sustainability. It might be a clichè, but one side of big challenges is that they offer big opportunities:
@@ -118,7 +118,7 @@ The service offered by this project, contextualized w.r.t. the market of  Ea
 
 Last but not least, although not an easy, immediate next step in a potential features development roadmap,  this tool could be generalized to other geographic areas, esponentially increasing its flexibility and application power.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "CO-OCCURENCY MATRIX FOR ALL LABELS")
+![alt text](images/deepAmazon-graph-service-project-maturity-benefits-users.png "CO-OCCURENCY MATRIX FOR ALL LABELS")
 FIG: PROJECT MATURITY W.R.T. EARTH OBSERVATION SERVICE MATURITY. GRAPH BASED ON [PLANETEK ITALIA](https://www.youtube.com/watch?v=uprTuje90vk&t=1018s) SPACE BUSINESS MODEL SLIDES.
 
 ## Related work 
@@ -142,10 +142,10 @@ It is not only possible but actually advisable, especially for small datasets an
 The loss functions considered were binary crossentropy, which is common for multi-label classification. Ideally, since the target metric is F2, the loss should directly optimize it. Unfortunately, F-beta score is not differentiable, making it unusable for stochastic gradient descent (which instead is an optimizaion technique for convex functions). As implemented both by [Google](http://proceedings.mlr.press/v54/eban17a/eban17a.pdf) and Microsoft researchers, non differentiable losses can be 'transformed' into differentiable ones via surrogated losses. The implementation of the latter was also used by the winner of the competition on this dataset on Kaggle. I also wanted to experiment with the focal loss, proposed by Facebook AI Research (FAIR) in their work on Dense Object Detection. Unfortunately, there wasnt enopugh time to play around with it, therefore I added it as something for future works.
 
 ## Dataset
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL")
+![alt text](reports/assets/Count%20plot%20of%20number%20of%20images%20per%20label.png"COUNT PLOT OF NUMBER OF IMAGES PER LABEL")
 FIG : COUNT PLOT OF NUMBER OF IMAGES PER LABEL
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "CO-OCCURENCY MATRIX FOR ALL LABELS")
+![alt text](reports/assets/Co-occurency matrix/ all labels.png "CO-OCCURENCY MATRIX FOR ALL LABELS")
 FIG : CO-OCCURENCY MATRIX FOR ALL LABELS
 
 The Kaggle [dataset](https://www.kaggle.com/c/planet-understanding-the-amazon-from-space) that I used in this project is a set of 40,479 satellite imagery of the Amazon Basin that was collected over a 1-year span starting in 2016. The dataset was provided by Planet. Each image is 256x256x4 in a 4-channel(RGB+near-IR) TIFF format. I had also to download the dataset with images in jpeg format, as explained later. There are 17 classes andeach image can belong to multiple classes. The labels canbroadly be broken into three groups: weather conditions,common land cover/land use, and rareland cover/land use. The weather conditionslabels are: clear, cloudy, partly cloudy, and haze. The commonland labels are: primary, agriculture, cultivation, habitation,water and roads. The rare labels are: slash-and-burn, selectivelogging, blooming, bare ground, conventional mining,artisinal mining, and blow-down. It is evident from the distribution of labels across training images (fig.2) that this project presents challenges due to class imbalance. Fig.3, 4, 5, show co-occurence matrices of labels, which help understanding some patterns: weather labels are mutually exclusive; commonlabels have heavy overlap whereas rare labels have very minimal overlap. In addition, we calculated the normalized difference vegetation index (NDVI) and green NDVI (GNDVI) for all datasets as the inclusion of vegetation indices [previously](https://arxiv.org/pdf/1709.06764.pdf) has been shown to improve the performance of CNN models applied to UAV orthogonal images, trained on small datasets. NDVI and GNDVI were derived from image bands using the following equations:
