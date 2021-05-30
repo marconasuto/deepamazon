@@ -403,27 +403,28 @@ return model
 
 First: given the size of the datasets (small) and the task, multi-label classification with 17 highly imbalanced classes, what we can expect from models trained from scratch is that their micro-f2 score performance will probably be poor. Micro metrics are computed taking into account the contribution of each label, or class, and then average. Since the threshold is 0.5 and the model will learn better the most frequent classes (this also due to adopting a loss function that doesn't really optimize the metric directly), what happens is that the majority of the classes receives low scores, not high enough to be greater than the decision threshold, which ultimately impacts the value of the metric. Therefore, we can see f2 scores curves that flat. It is more insightful to look at the loss curves. Models v10, v1.1 and v1.4 show that model is learning, whereas v1.2 and v1.3 s show very slow learning.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "BASELINE MODELS LOSS AND MICRO F2-SCORE CURVES")
+![alt text](reports/assets/loss_curves_first_image.png "BASELINE MODELS LOSS AND MICRO F2-SCORE CURVES")
 FIG : BASELINE MODELS LOSS AND MICRO F2-SCORE CURVES:  MICRO METRICS ARE COMPUTED TAKING INTO ACCOUNT THE CONTRIBUTION OF EACH LABEL, OR CLASS, AND THEN AVERAGE. SINCE THE THRESHOLD IS 0.5 AND THE MODEL WILL LEARN BETTER THE MOST FREQUENT CLASSES (THIS ALSO DUE TO ADOPTING A LOSS FUNCTION THAT DOESN'T REALLY OPTIMIZE THE METRIC DIRECTLY), WHAT HAPPENS IS THAT THE MAJORITY OF THE CLASSES RECEIVES LOW SCORES, NOT HIGH ENOUGH TO BE GREATER THAN THE DECISION THRESHOLD, WHICH ULTIMATELY IMPACTS THE VALUE OF THE METRIC. THEREFORE, WE CAN SEE F2 SCORES CURVES THAT FLAT.
 
 I then tried several experiments with a pre-trained model, ResNet50. Afer a few iterations, the best optimization algorithm resulted to be Adam. The best performing loss function at the beginning (feature extractor mode) resulted to be soft f2 loss. However, when running in fine-tuning mode, especially increasing the number of unfrozen layers, binary crossentropy performed better. The strategy adopted with tuning the learning-rate was starting with 10ˆ-4 and using a Reduce LR callback with a decay to 10ˆ-6. 
 
 The experiments using ResNet50 as a feature extractor, showed significant improvents w.r.t. the baseline models. However, even gradually increasing the training set (from 30% to 60%), the model didn't show improvements, plateauing around a loss value of  0.3 , without overfitting. I gradually unfroze top layers until overfitting, then I slowly increased the amount of data, and iteratated with these two parameters (number of layers to unfreeze and amount of data). Finally, I overfitted a fully trainable model, keeping, as recommended by Keras official guide, the model in inference mode (training=False) to avoid that the weights of batch normalized layers would be destroyed after the first iterations. At this point, the strategy to manage overfitting was first to do some data augmentation, then increasing the dropout rate.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "RESNET50 AS FEATURE EXTRACTOR (ALL LAYERS FROZEN), TRAINED ON 30% OF THE ORIGINAL DATASET")
+![alt text](reports/assets/loss_curves_second_image.png "RESNET50 AS FEATURE EXTRACTOR (ALL LAYERS FROZEN), TRAINED ON 30% OF THE ORIGINAL DATASET")
 FIG : RESNET50 AS FEATURE EXTRACTOR (ALL LAYERS FROZEN), TRAINED ON 30% OF THE ORIGINAL DATASET;  LEFT COLUMN SHOWS PERFORMANCE OF THE MODEL TRAINED WITH BINARY CROSSENTROPY LOSS; RIGHT COLUMN SHOWS THE SAME MODEL TRAINED WITH SOFT-MICRO-F2 LOSS. THERE IS A SLIGHT INCREASE IN PERFORMANCE WITH SOFT-MICRO-F2 LOSS.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "RESNET50 TRAINED ON 60% OF THE ORIGINAL DATASET, SOFT-MICRO-F2 LOSS")
+![alt text](reports/assets/loss_curves_third_image.png "RESNET50 TRAINED ON 60% OF THE ORIGINAL DATASET, SOFT-MICRO-F2 LOSS")
 FIG : RESNET50 TRAINED ON 60% OF THE ORIGINAL DATASET, SOFT-MICRO-F2 LOSS;  LEFT COLUMN SHOWS PERFORMANCE OF THE MODEL TRAINED WITH 20% OF THE TOP LAYERS TRAINABLE (FINE-TUNING); RIGHT COLUMN SHOWS THE SAME MODEL TRAINED AS FEATURE EXTRACTOR. THEY BOTH OVERFIT
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "RESNET50 TRAINED ON 100% OF THE ORIGINAL DATASET, BINARY CROSSENTROPY LOSS")
+![alt text](reports/assets/loss_curves_fourth_image.png "RESNET50 TRAINED ON 100% OF THE ORIGINAL DATASET, BINARY CROSSENTROPY LOSS")
 FIG : RESNET50 TRAINED ON 100% OF THE ORIGINAL DATASET, BINARY CROSSENTROPY LOSS;  MODEL TRAINED WITH 100% OF THE TOP LAYERS TRAINABLE (FINE-TUNING); IT CLEARLY OVERFITS
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "RESNET50 TRAINED WITH TF.DATA PIPELINE, ON 100% OF THE ORIGINAL DATASET, BINARY CROSSENTROPY LOSS")
+![alt text](reports/assets/loss_curves_fifth_image.png "RESNET50 TRAINED WITH TF.DATA PIPELINE, ON 100% OF THE ORIGINAL DATASET, BINARY CROSSENTROPY LOSS")
 FIG : RESNET50 TRAINED WITH TF.DATA PIPELINE, ON 100% OF THE ORIGINAL DATASET, BINARY CROSSENTROPY LOSS;  MODEL TRAINED WITH 100% OF THE TOP LAYERS TRAINABLE (FINE-TUNING); IT OVERFITS
 
 This last configuration, data augmentation and L2 regularization, helped achievieng the best results obtained, that were around 3% less than state-of-the-art results. Below results on test set are summarised and displayed:
 
+![alt text](reports/assets/loss_curves_fifth_image.png "RESNET50 TRAINED WITH TF.DATA PIPELINE, ON 100% OF THE ORIGINAL DATASET, BINARY CROSSENTROPY LOSS")
 FIG : RESNET50 TRAINED ON 100% OF THE ORIGINAL DATASET, FINE-TUNED, WITH DATA AUGMENTATION AND L2 REGULARIZATION; MAX F2-SCORE PER LABEL
 
 FIG : RESNET50 TRAINED ON 100% OF THE ORIGINAL DATASET, FINE-TUNED, WITH DATA AUGMENTATION AND L2 REGULARIZATION; THE MODEL ACHIEVES A 89.5% F2-SCORE ON TEST SET, WITHOUT OVERFITTING.
