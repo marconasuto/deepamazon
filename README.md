@@ -6,7 +6,7 @@
 
 *Module 5 project for FlatIron School Data Science course*
 
-![alt text](images/mapfires.png "AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019)")
+[![alt text](images/mapfires.png "AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019)")](https://marconasuto.github.io/maps/deepamazon/)
 FIG AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019) 
 DESCRIPTION: IT CAN BE EASILY SEEN THAT THERE IS A GOOD OVERLAP BETWEEN FIRES AND MINES SITES LOCATIONS. 
 SOURCE: NASA/NOAA, VIIRS DAILY GLOBAL FIRE DETECTIONS; DETECTIONS: AMAZONIAN NETWORK OF GEOREFERENCED SOCIOENVIRONMENTAL INFORMATION (RAISG); CREDITS: MARCO GIUSEPPE NASUTO
@@ -439,6 +439,8 @@ We posed three main questions we wanted to address when framing the business val
 Yes, it can. Fine-tuning pre-trained models, as proven also by previous [works](https://arxiv.org/pdf/1703.00121.pdf),  allows to bypass the high costs of building a big datasets of satellite images. If we add the time-component, we can create a database of areas and monitor their evolution throughout time. Remote sensing data offers the chance to go well beyond scene classification: indeed we can add layers of information through spectral analysis (i.e. vegetation indices) or leveraging on SAR images. We can even think of adding other layers and sources of information, like sensors on the ground, creating a network of sensors.
 
 - Where are the majority of fires located?
+
+[![alt text](images/mapfires.png "AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019)")](https://marconasuto.github.io/maps/deepamazon/)
 
 To answer to this question I merged different data sources and plotted them on a map (using Folium library). The heatmap shows fires and their radiative power, expressed in MW, which is the rate of emitted radiative energy by the fire at the time of the observation. It is possible to immediately identify an arch of fires, covering the sourthern part of the Amazon basin. In the northern state of Roraima, there is another cluster of fires, as well, it is possible to see a series of fires starting from the delta of the Amazon river, up until Manaus. 
 
