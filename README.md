@@ -142,27 +142,24 @@ It is not only possible but actually advisable, especially for small datasets an
 The loss functions considered were binary crossentropy, which is common for multi-label classification. Ideally, since the target metric is F2, the loss should directly optimize it. Unfortunately, F-beta score is not differentiable, making it unusable for stochastic gradient descent (which instead is an optimizaion technique for convex functions). As implemented both by [Google](http://proceedings.mlr.press/v54/eban17a/eban17a.pdf) and Microsoft researchers, non differentiable losses can be 'transformed' into differentiable ones via surrogated losses. The implementation of the latter was also used by the winner of the competition on this dataset on Kaggle. I also wanted to experiment with the focal loss, proposed by Facebook AI Research (FAIR) in their work on Dense Object Detection. Unfortunately, there wasnt enopugh time to play around with it, therefore I added it as something for future works.
 
 ## Dataset
-![alt text](reports/assets/Count%20plot%20of%20number%20of%20images%20per%20label.png"COUNT PLOT OF NUMBER OF IMAGES PER LABEL")
+![alt text](reports/assets/count_plot_imgs_label.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL")
 FIG : COUNT PLOT OF NUMBER OF IMAGES PER LABEL
 
-![alt text](reports/assets/Co-occurency matrix/ all labels.png "CO-OCCURENCY MATRIX FOR ALL LABELS")
+![alt text](reports/assets/co_occ_all.png "CO-OCCURENCY MATRIX FOR ALL LABELS")
 FIG : CO-OCCURENCY MATRIX FOR ALL LABELS
 
-The Kaggle [dataset](https://www.kaggle.com/c/planet-understanding-the-amazon-from-space) that I used in this project is a set of 40,479 satellite imagery of the Amazon Basin that was collected over a 1-year span starting in 2016. The dataset was provided by Planet. Each image is 256x256x4 in a 4-channel(RGB+near-IR) TIFF format. I had also to download the dataset with images in jpeg format, as explained later. There are 17 classes andeach image can belong to multiple classes. The labels canbroadly be broken into three groups: weather conditions,common land cover/land use, and rareland cover/land use. The weather conditionslabels are: clear, cloudy, partly cloudy, and haze. The commonland labels are: primary, agriculture, cultivation, habitation,water and roads. The rare labels are: slash-and-burn, selectivelogging, blooming, bare ground, conventional mining,artisinal mining, and blow-down. It is evident from the distribution of labels across training images (fig.2) that this project presents challenges due to class imbalance. Fig.3, 4, 5, show co-occurence matrices of labels, which help understanding some patterns: weather labels are mutually exclusive; commonlabels have heavy overlap whereas rare labels have very minimal overlap. In addition, we calculated the normalized difference vegetation index (NDVI) and green NDVI (GNDVI) for all datasets as the inclusion of vegetation indices [previously](https://arxiv.org/pdf/1709.06764.pdf) has been shown to improve the performance of CNN models applied to UAV orthogonal images, trained on small datasets. NDVI and GNDVI were derived from image bands using the following equations:
+The Kaggle [dataset](https://www.kaggle.com/c/planet-understanding-the-amazon-from-space) that I used in this project is a set of 40,479 satellite imagery of the Amazon Basin that was collected over a 1-year span starting in 2016. The dataset was provided by Planet. Each image is 256x256x4 in a 4-channel(RGB+near-IR) TIFF format. I had also to download the dataset with images in jpeg format, as explained later. There are 17 classes andeach image can belong to multiple classes. The labels canbroadly be broken into three groups: weather conditions,common land cover/land use, and rareland cover/land use. The weather conditionslabels are: clear, cloudy, partly cloudy, and haze. The commonland labels are: primary, agriculture, cultivation, habitation,water and roads. The rare labels are: slash-and-burn, selectivelogging, blooming, bare ground, conventional mining,artisinal mining, and blow-down. It is evident from the distribution of labels across training images (fig) that this project presents challenges due to class imbalance. Fig.3, 4, 5, show co-occurence matrices of labels, which help understanding some patterns: weather labels are mutually exclusive; commonlabels have heavy overlap whereas rare labels have very minimal overlap. In addition, we calculated the normalized difference vegetation index (NDVI) and green NDVI (GNDVI) for all datasets as the inclusion of vegetation indices [previously](https://arxiv.org/pdf/1709.06764.pdf) has been shown to improve the performance of CNN models applied to UAV orthogonal images, trained on small datasets. NDVI and GNDVI were derived from image bands using the following equations:
 IMAGE
 
 Preprocessing encompassed data augmentation: 90 deg rotation, left-right flipping; one-hot-encoding of labels; image parsing included decoding, scaling either using ResNet preprocess unit  or dividing each pixel by 255; resizing.
 
 The [data](https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/viirs-i-band-active-fire-data) about fires refer to the entire 2019 and were spotted by VIIRS 375m sensor, on board of the Suomi NPP/NOAA-20 satellite. VIIRS has a thermal band of 375m resolution, w.r.t., i.e. MODIS thermal resolution of 1000m.VIIRS spotted more than 1.45M fires only in Brazil. The dataset consists of all fires detected, [reporting](https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/v1-vnp14imgt) their geolocations, information about the acquisition (scan, track, refers to the actual size of the pixel, date, daynight about the time), the instrument and satellite used, they measured brightness in the I-4 and I-5 channels, and the type of fire I filtered the fires by type and confidence level (only vegetation fires and with confidence Nominal' or 'High'. Plotting requried downsampling the number of points/fires as they are in the order of magnitude of millions. I randomly downsampled, between the IQR range, the 5% of the total number and plotted on the map.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "VIIRS DATASET FIRES SPOTTED IN BRAZIL DURING 2019")
-FIG : VIIRS DATASET FIRES SPOTTED IN BRAZIL DURING 2019
-
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png " BAR PLOT OF TYPE OF FIRES SPOTTED BY VIIRS 375M IN BRAZILE IN 2019")
+![alt text](reports/map_analysis/type_fires.png " BAR PLOT OF TYPE OF FIRES SPOTTED BY VIIRS 375M IN BRAZILE IN 2019")
 FIG : BAR PLOT OF TYPE OF FIRES SPOTTED BY VIIRS 375M IN BRAZILE IN 2019; NOTE THAT THE ALMOST TOTALITY IS VEGETATION FIRE
 
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "HISTOGRAM OF VEGETATION FIRES SPOTTED BY VIIRS 375M IN BRAZIL BY THEIR RADIATIVE POWER(MW) - 2019")
+![alt text](reports/map_analysis/fires_frp.png "COUNT PLOT OF VEGETATION FIRES SPOTTED BY VIIRS 375M IN BRAZIL BY THEIR RADIATIVE POWER(MW) - 2019")
 FIG : HISTOGRAM OF VEGETATION FIRES SPOTTED BY VIIRS 375M IN BRAZIL BY THEIR RADIATIVE POWER(MW) - 2019 (SOURCE: SUOMI NPP SATELLITE/NASA); THESE ARE THE FIRES LABELLED WITH CONFIDENCE NOMINAL OR HIGH.
 
 I added data about some of the human activities with the highest environmental impact, such as oil and mining sites, as well as indigeneous population areas. The data was downloaded from the Amazonian network of georeferenced socioenvironmental inforamtion (RAISG). I I filtered by country (Brazil) and randomly downsampled due to the order of magnitude of points that would have been plotted on the map.
@@ -175,42 +172,42 @@ I faced several issues with the different decoding, color spaces and rescaling o
 
  Reading tiff: tiff images are 16-bit multi-spectral images, the band order is blue, green, red, near IR (bgra). Depending on the library adopted to read them, things can get tricky with the channels order. Let's start from reading a tiff image using skimage, aka scikit-image, and visualizing using SPy (spectral python), package for hyperspectral images:
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
+![alt text](images/opening_tiff_viz_with_spectral.png "Opening tif wtih spectral ptyhon")
 FIG:
 
 that returns:
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
-FIG:
+![alt text](images/bgr-rgb-skimage.png)
+
 
 checking the array values:
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
-FIG:
+![alt text](images/skimage-array-image.png)
+
 
 OpenCv reads images as bgr(a). However, being tiff images channels order bgra, OpenCv, de facto, changes the order to rgb(a). 
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
-FIG:
+![alt text](images/opencv-array-image.png)
+
 
 PIL, which is used in tensorflow ImageDataGenerator, reads images as rgb. It returns an array decoded in 8-bit (uint8). When reading tiff, it actually outputs a bgr image:
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
-FIG:
+![alt text](images/pil-array-image.png)
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
-FIG:
+
+![alt text](images/pil-images-bgr-rgb-show.png)
+
 
 Starting from how PIL (hence ImageDataGenerator) reads tiff images, I'll move to the second issue I faced.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
-FIG
+![alt text](images/array_tiff_img_opened_PIL.png)
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
-FIG
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
-FIG
+![alt text](images/tf-array-image.png)
+
+
+![alt text](images/opencv-array-image.png)
+
 
 
 2. Rescaling intensity values: data pipelines in tensorflow can be implemented in different ways. I wanted to use tf.data w.r.t. ImageDataGenerator, as tf.data offers faster performance. Tensorflow offers an experimental function called tfio.experimental.image.decode_tiff to decode string tensor (returned by tf.io.read_file) to a uint8 array, with intensity values rescaled to 0-255. I'll show you the differences in terms of rescaling intensities amid PIL images, tensorflow decode_tiff and opencv, the latter opening only the first 3 channels:
@@ -238,13 +235,13 @@ The hyperparameters tuned were: loss function: binary cross-entropy, soft f2 sco
 
 The evaluation metric adopted was f2-score.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
+![alt text](reports/assets/count_plot_imgs_label_train_set.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET")
 FIG : COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TRAINING SET OBTAINED WITH TRAIN-TEST SPLIT 0.9, AND TRAIN-VAL SPLIT 0.8, RANDOM SHUFFLING AND SAMPLING
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - VALIDATION SET ")
+![alt text](reports/assets/count_plot_imgs_label_val_set.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - VALIDATION SET ")
 FIG : COUNT PLOT OF NUMBER OF IMAGES PER LABEL - VALIDATION SET OBTAINED WITH TRAIN-TEST SPLIT 0.9 AND TRAIN-VAL SPLIT 0.8, RANDOM SHUFFLING AND SAMPLING
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TEST SET")
+![alt text](reports/assets/count_plot_imgs_label_test_set.png "COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TEST SET")
 FIG : COUNT PLOT OF NUMBER OF IMAGES PER LABEL - TEST SET OBTAINED WITH TRAIN-TEST SPLIT 0.9, RANDOM SHUFFLING AND SAMPLING
 
 
