@@ -12,6 +12,7 @@ DESCRIPTION: IT CAN BE EASILY SEEN THAT THERE IS A GOOD OVERLAP BETWEEN FIRES AN
 SOURCE: NASA/NOAA, VIIRS DAILY GLOBAL FIRE DETECTIONS; DETECTIONS: AMAZONIAN NETWORK OF GEOREFERENCED SOCIOENVIRONMENTAL INFORMATION (RAISG); CREDITS: MARCO GIUSEPPE NASUTO
 
 ## Project structure
+```
 ├── LICENSE
 ├── README.md                                                <- The project layout (this file)
 ├── data
@@ -39,9 +40,8 @@ SOURCE: NASA/NOAA, VIIRS DAILY GLOBAL FIRE DETECTIONS; DETECTIONS: AMAZONIAN NET
 │   └── logs                             <- Tensorboard logs
 │   └── saved_models             <- Saved models
 │   └── maps                           <- Folium map in HTML
-
 └── requirements.txt                <- The requirements file for reproducing the analysis environment
-
+```
 
 ## Project description
 The strategic development planning of a region is a [highly interdisciplinary task](https://jssidoi.org/ird/uploads/issues/Insights_into_Regional_Development_Vol1_No3_print.pdf) that requires a set of tools,  competencies, people and timing, to come up with a political vision of the future of a region. Any modern development strategy should be thought within the [sustainable development framework](https://www.un.org/sustainabledevelopment/blog/2016/03/un-statistical-commission-endorses-global-indicator-framework/), which has at the core the concept of [sustainability](http://www2.econ.iastate.edu/classes/tsc220/hallam/TypesOfSustainability.pdf) (human, social , economical, environmental). The field is obviously very complex due to internal, regional conditions, and external factors, as regions are dynamic, interconnected systems. A thorough analysis require both an enormous, etherogeneous (as the problem is multi-faceted) amount of data, and a substantial degree of synthesis of this information, in order to distill insights and make them actionable. Machine learning offers the chance and the hope to leverage on this data and transform it into information. Often digitalization is misconcieved as de-materialization, something closer to magic than reality. Every digital activity has a physical aspect/process somewhere along its supply chain, that can be described by a set of features and, by being physical, it can be  displayed on a map. Remote sensing data is key for geospatial analysis, especially within the context of strategic development planning of a region. One of the building blocks of a system able to track and analyse objects from RS images, is to detect and classify them. Although in rapid development, deep learning, a subfield of machine learning that showed impressive applications on computer vision tasks, has not being applied extensively to remote sensing images with respect to other type of imageries, yet.
