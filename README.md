@@ -6,7 +6,7 @@
 
 *Module 5 project for FlatIron School Data Science course*
 
-blog: https://deepamazon.marconasuto.com/
+Blog: https://deepamazon.marconasuto.com/
 
 [![alt text](images/mapfires.png "AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019)")](https://marconasuto.github.io/maps/deepamazon/)
 FIG AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019) 
