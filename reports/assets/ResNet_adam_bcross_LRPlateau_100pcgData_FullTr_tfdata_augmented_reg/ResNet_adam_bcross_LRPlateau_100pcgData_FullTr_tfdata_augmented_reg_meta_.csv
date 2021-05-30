@@ -1,0 +1,2 @@
+channels,image_size,num_images_train,num_images_val,num_images_test,epochs,batch_size,loss_type,opt_type,learning_rate,momentum,regularization,use_random_flip,use_90rotation,use_elastic_transform
+3,128,25501,10930,4048,4,128,binary_crossentropy,Adam,0.0001,0.9,True,True,True,False
