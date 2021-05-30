@@ -32,6 +32,7 @@ SOURCE: NASA/NOAA, VIIRS DAILY GLOBAL FIRE DETECTIONS; DETECTIONS: AMAZONIAN NET
 │                    └── chips.csv                                <- Chips labels table reference
 │
 ├── load_eda_train.ipynb       <- Input, training, validation, test, reports
+├── commodities_fires_map.ipynb       <- spatial analysis of fires using VIIRS and RAISG data
 ├── utils.py                            <- import libraries and utility functions
 │
 ├── reports                              <- Reports and presentations
@@ -40,6 +41,7 @@ SOURCE: NASA/NOAA, VIIRS DAILY GLOBAL FIRE DETECTIONS; DETECTIONS: AMAZONIAN NET
 │   └── logs                             <- Tensorboard logs
 │   └── saved_models             <- Saved models
 │   └── maps                           <- Folium map in HTML
+│   └── maps_analysis               <- plots from commodities_fires_map.ipynb
 └── requirements.txt                <- The requirements file for reproducing the analysis environment
 ```
 
