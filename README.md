@@ -37,6 +37,7 @@ SOURCE: NASA/NOAA, VIIRS DAILY GLOBAL FIRE DETECTIONS; DETECTIONS: AMAZONIAN NET
 │
 ├── reports                              <- Reports and presentations
 │   └── presentation.pdf         <- Non-technical presentation
+│   └── presentation.key        <- Slide deck non-technical presentation
 │   └── assets                         <- Plots
 │   └── logs                             <- Tensorboard logs
 │   └── saved_models             <- Saved models
