@@ -6,6 +6,8 @@
 
 *Module 5 project for FlatIron School Data Science course*
 
+blog: https://deepamazon.marconasuto.com/
+
 [![alt text](images/mapfires.png "AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019)")](https://marconasuto.github.io/maps/deepamazon/)
 FIG AMAZON BASIN MAP: FIRES, MINING, OIL AND INDIGENOUS AREAS (UPDATED 2019) 
 DESCRIPTION: IT CAN BE EASILY SEEN THAT THERE IS A GOOD OVERLAP BETWEEN FIRES AND MINES SITES LOCATIONS. 
